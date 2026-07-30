@@ -9,29 +9,35 @@ export default function MusicPlayer() {
   const songUrl = "/music/juni.webm";
 
   const startPlayback = () => {
-    if (!audioRef.current || isPlaying) return;
+    if (!audioRef.current) return;
     audioRef.current.play().then(() => {
       setIsPlaying(true);
     }).catch((err) => {
-      console.log("Autoplay waiting for user interaction:", err);
+      console.log("Autoplay policy waiting for initial interaction:", err);
     });
   };
 
   useEffect(() => {
-    // Attempt immediate autoplay on mount
+    // Attempt instant playback on website visit
     startPlayback();
 
-    // Browser Autoplay Policy Fallback: start music on first click anywhere on page
-    const handleFirstUserInteraction = () => {
+    // Catch any user interaction (click, scroll, touch, mouse movement) to start audio instantly
+    const handleUserInteraction = () => {
       startPlayback();
     };
 
-    window.addEventListener('click', handleFirstUserInteraction, { once: true });
-    window.addEventListener('touchstart', handleFirstUserInteraction, { once: true });
+    window.addEventListener('click', handleUserInteraction, { once: true });
+    window.addEventListener('touchstart', handleUserInteraction, { once: true });
+    window.addEventListener('scroll', handleUserInteraction, { once: true });
+    window.addEventListener('mousemove', handleUserInteraction, { once: true });
+    window.addEventListener('pointerdown', handleUserInteraction, { once: true });
 
     return () => {
-      window.removeEventListener('click', handleFirstUserInteraction);
-      window.removeEventListener('touchstart', handleFirstUserInteraction);
+      window.removeEventListener('click', handleUserInteraction);
+      window.removeEventListener('touchstart', handleUserInteraction);
+      window.removeEventListener('scroll', handleUserInteraction);
+      window.removeEventListener('mousemove', handleUserInteraction);
+      window.removeEventListener('pointerdown', handleUserInteraction);
     };
   }, []);
 

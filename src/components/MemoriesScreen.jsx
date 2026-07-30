@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart } from 'lucide-react';
+import { X, Heart, Play } from 'lucide-react';
 
 export default function MemoriesScreen({ onBack }) {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedMedia, setSelectedMedia] = useState(null);
 
-  // All 13 converted high quality user photos
+  // All converted photos + video item for "Forever & Always"
   const photos = [
     { src: '/photos/IMG_7956.jpg', caption: 'Sweetest moments ❤️', rotation: -3 },
     { src: '/photos/IMG_8606.jpg', caption: 'Adventures together 💫', rotation: 2 },
@@ -19,7 +19,12 @@ export default function MemoriesScreen({ onBack }) {
     { src: '/photos/IMG_6988.jpg', caption: 'Side by side 💖', rotation: 3 },
     { src: '/photos/IMG_7724.jpg', caption: 'Unforgettable days 🌸', rotation: -1 },
     { src: '/photos/fqs 2026-07-15 210422B7097164B0C7.jpg', caption: 'Holding onto memories', rotation: 2 },
-    { src: '/photos/fqs 2026-07-15 213009E636665AA9F7.jpg', caption: 'Forever & Always', rotation: -2 },
+    { 
+      videoSrc: '/videos/IMG_8046.mov', 
+      caption: 'Forever & Always 🎥', 
+      rotation: -2, 
+      isVideo: true 
+    },
   ];
 
   return (
@@ -51,10 +56,10 @@ export default function MemoriesScreen({ onBack }) {
         color: '#7A6C6C',
         marginBottom: '2.5rem'
       }}>
-        Every photo holds a piece of our story ❤️
+        Every moment holds a piece of our story ❤️
       </p>
 
-      {/* Photobooth Strip Feature (as seen in reference video!) */}
+      {/* Photobooth Strip Feature */}
       <div style={{
         background: '#FFFFFF',
         padding: '1.2rem',
@@ -74,7 +79,7 @@ export default function MemoriesScreen({ onBack }) {
         {photos.slice(0, 3).map((p, i) => (
           <div 
             key={i} 
-            onClick={() => setSelectedImage(p.src)}
+            onClick={() => setSelectedMedia(p)}
             style={{ width: '190px', height: '140px', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer', border: '1px solid #EEE' }}
           >
             <img src={p.src} alt="memory strip" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -99,7 +104,7 @@ export default function MemoriesScreen({ onBack }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05, duration: 0.4 }}
             className="polaroid-frame"
-            onClick={() => setSelectedImage(photo.src)}
+            onClick={() => setSelectedMedia(photo)}
             style={{
               transform: `rotate(${photo.rotation}deg)`,
               cursor: 'pointer'
@@ -114,17 +119,52 @@ export default function MemoriesScreen({ onBack }) {
               borderRadius: '2px',
               overflow: 'hidden',
               background: '#F0ECE1',
-              marginBottom: '0.8rem'
+              marginBottom: '0.8rem',
+              position: 'relative'
             }}>
-              <img
-                src={photo.src}
-                alt={photo.caption}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
-              />
+              {photo.isVideo ? (
+                <>
+                  <video
+                    src={photo.videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    background: 'rgba(217, 69, 85, 0.85)',
+                    borderRadius: '50%',
+                    width: '42px',
+                    height: '42px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                  }}>
+                    <Play size={20} fill="white" />
+                  </div>
+                </>
+              ) : (
+                <img
+                  src={photo.src}
+                  alt={photo.caption}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              )}
             </div>
 
             <p style={{
@@ -141,12 +181,12 @@ export default function MemoriesScreen({ onBack }) {
 
       {/* Fullscreen Lightbox Modal */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedMedia && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedMedia(null)}
             style={{
               position: 'fixed',
               top: 0,
@@ -180,7 +220,7 @@ export default function MemoriesScreen({ onBack }) {
               }}
             >
               <button
-                onClick={() => setSelectedImage(null)}
+                onClick={() => setSelectedMedia(null)}
                 style={{
                   position: 'absolute',
                   top: '12px',
@@ -201,12 +241,27 @@ export default function MemoriesScreen({ onBack }) {
               </button>
 
               <div style={{ width: '100%', height: '420px', borderRadius: '4px', overflow: 'hidden', marginBottom: '1rem' }}>
-                <img src={selectedImage} alt="Enlarged photo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                {selectedMedia.isVideo ? (
+                  <video 
+                    src={selectedMedia.videoSrc} 
+                    controls 
+                    autoPlay 
+                    loop 
+                    playsInline 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                  />
+                ) : (
+                  <img 
+                    src={selectedMedia.src} 
+                    alt="Enlarged photo" 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                  />
+                )}
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontFamily: 'var(--font-handwriting)', fontSize: '1.6rem', color: '#D94555' }}>
                 <Heart size={20} fill="#D94555" />
-                <span>You & Me</span>
+                <span>{selectedMedia.caption}</span>
               </div>
             </motion.div>
           </motion.div>
