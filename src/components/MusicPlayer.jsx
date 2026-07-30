@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Music, Volume2, VolumeX } from 'lucide-react';
 
 export default function MusicPlayer() {
@@ -7,6 +7,33 @@ export default function MusicPlayer() {
 
   // Sajjan Raj Vaidya - Juni (Actual downloaded audio track)
   const songUrl = "/music/juni.webm";
+
+  const startPlayback = () => {
+    if (!audioRef.current || isPlaying) return;
+    audioRef.current.play().then(() => {
+      setIsPlaying(true);
+    }).catch((err) => {
+      console.log("Autoplay waiting for user interaction:", err);
+    });
+  };
+
+  useEffect(() => {
+    // Attempt immediate autoplay on mount
+    startPlayback();
+
+    // Browser Autoplay Policy Fallback: start music on first click anywhere on page
+    const handleFirstUserInteraction = () => {
+      startPlayback();
+    };
+
+    window.addEventListener('click', handleFirstUserInteraction, { once: true });
+    window.addEventListener('touchstart', handleFirstUserInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener('click', handleFirstUserInteraction);
+      window.removeEventListener('touchstart', handleFirstUserInteraction);
+    };
+  }, []);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -24,7 +51,7 @@ export default function MusicPlayer() {
 
   return (
     <div style={{ position: 'fixed', top: '1.5rem', right: '1.5rem', zIndex: 1000 }}>
-      <audio ref={audioRef} src={songUrl} loop preload="auto" />
+      <audio ref={audioRef} src={songUrl} loop autoPlay preload="auto" />
       <button 
         onClick={togglePlay}
         className={`music-toggle ${isPlaying ? 'playing' : ''}`}
