@@ -5,8 +5,8 @@ export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
-  // Sajjan Raj Vaidya - Juni / Romantic acoustic track
-  const songUrl = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=piano-moment-114476.mp3";
+  // Sajjan Raj Vaidya - Juni (Actual downloaded audio track)
+  const songUrl = "/music/juni.webm";
 
   const togglePlay = () => {
     if (!audioRef.current) return;
