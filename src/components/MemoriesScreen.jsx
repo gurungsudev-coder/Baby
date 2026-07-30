@@ -8,16 +8,16 @@ export default function MemoriesScreen({ onBack }) {
   // All 13 converted high quality user photos
   const photos = [
     { src: '/photos/IMG_7956.jpg', caption: 'Sweetest moments ❤️', rotation: -3 },
-    { src: '/photos/IMG_8606.jpg', caption: 'Your beautiful smile ✨', rotation: 2 },
-    { src: '/photos/IMG_4901.jpg', caption: 'Unforgettable days 🌸', rotation: -2 },
+    { src: '/photos/IMG_8606.jpg', caption: 'Adventures together 💫', rotation: 2 },
+    { src: '/photos/IMG_4901.jpg', caption: 'Precious times ✨', rotation: -2 },
     { src: '/photos/IMG_9739.jpg', caption: 'Always my favorite', rotation: 4 },
-    { src: '/photos/IMG_9756.jpg', caption: 'Adventures together 💫', rotation: -4 },
-    { src: '/photos/404c595b-a508-424f-835a-4c5a42b5f0b8.jpg', caption: 'Pure happiness 💕', rotation: 3 },
+    { src: '/photos/IMG_9756.jpg', caption: 'Your beautiful smile ✨', rotation: -4 },
+    { src: '/photos/404c595b-a508-424f-835a-4c5a42b5f0b8.jpg', caption: 'Little smiles 🌸', rotation: 3 },
     { src: '/photos/FullSizeRender.jpg', caption: 'My whole heart', rotation: -2 },
-    { src: '/photos/IMG_5508.jpg', caption: 'Little smiles', rotation: 1 },
+    { src: '/photos/IMG_5508.jpg', caption: 'Pure happiness 💕', rotation: 1 },
     { src: '/photos/IMG_6549.jpg', caption: 'Magic in the air', rotation: -3 },
     { src: '/photos/IMG_6988.jpg', caption: 'Side by side 💖', rotation: 3 },
-    { src: '/photos/IMG_7724.jpg', caption: 'Precious times', rotation: -1 },
+    { src: '/photos/IMG_7724.jpg', caption: 'Unforgettable days 🌸', rotation: -1 },
     { src: '/photos/fqs 2026-07-15 210422B7097164B0C7.jpg', caption: 'Holding onto memories', rotation: 2 },
     { src: '/photos/fqs 2026-07-15 213009E636665AA9F7.jpg', caption: 'Forever & Always', rotation: -2 },
   ];

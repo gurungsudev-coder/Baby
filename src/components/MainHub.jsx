@@ -27,15 +27,6 @@ export default function MainHub({ onSelectCategory, isUnlocked }) {
       color: isUnlocked ? '#388E3C' : '#E65100',
       bg: isUnlocked ? '#F1F8E9' : '#FFF3E0',
       badge: isUnlocked ? 'Unlocked ✨' : 'Special Lock'
-    },
-    {
-      id: 'bouquet',
-      title: 'Your favorite flowers',
-      subtitle: 'ROSES',
-      icon: Flower2,
-      color: '#D94555',
-      bg: '#FFF0F2',
-      badge: 'Bouquet'
     }
   ];
 
