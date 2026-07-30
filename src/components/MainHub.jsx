@@ -23,7 +23,7 @@ export default function MainHub({ onSelectCategory, isUnlocked }) {
     {
       id: 'special-date',
       title: 'Our Memorable Day',
-      subtitle: '2024-12-29',
+      subtitle: '2023-12-29',
       icon: CalendarHeart,
       color: '#D94555',
       bg: '#FFF0F2',

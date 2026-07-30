@@ -15,7 +15,7 @@ export default function SpecialDateScreen({ onBack }) {
 
   useEffect(() => {
     const calculateTime = () => {
-      const start = new Date('2024-12-29T00:00:00');
+      const start = new Date('2023-12-29T00:00:00');
       const now = new Date();
 
       let years = now.getFullYear() - start.getFullYear();
@@ -98,7 +98,7 @@ export default function SpecialDateScreen({ onBack }) {
         color: '#D94555',
         marginBottom: '0.2rem'
       }}>
-        December 29, 2024
+        December 29, 2023
       </h1>
 
       <p style={{
@@ -131,7 +131,7 @@ export default function SpecialDateScreen({ onBack }) {
           maxWidth: '620px',
           margin: '0 auto'
         }}>
-          "December 29, 2024 was the day our lives intertwined and a beautiful journey began.
+          "December 29, 2023 was the day our lives intertwined and a beautiful journey began.
           From that unforgettable day to this very moment, every second spent with you has been full of warmth, love, and happiness."
         </p>
       </div>
