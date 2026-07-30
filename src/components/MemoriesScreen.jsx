@@ -19,7 +19,7 @@ export default function MemoriesScreen({ onBack }) {
     { src: '/photos/IMG_6988.jpg', caption: 'Side by side 💖', rotation: 3 },
     { src: '/photos/IMG_7724.jpg', caption: 'Unforgettable days 🌸', rotation: -1 },
     { src: '/photos/fqs 2026-07-15 210422B7097164B0C7.jpg', caption: 'Holding onto memories', rotation: 2 },
-    { src: '/photos/IMG_6069.png', caption: 'Forever & Always ❤️', rotation: -2 },
+    { src: '/photos/IMG_6069.jpg', caption: 'Forever & Always ❤️', rotation: -2 },
   ];
 
   return (
@@ -72,8 +72,8 @@ export default function MemoriesScreen({ onBack }) {
           PHOTO STRIP
         </div>
         {photos.slice(0, 3).map((p, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             onClick={() => setSelectedMedia(p)}
             style={{ width: '190px', height: '140px', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer', border: '1px solid #EEE' }}
           >
@@ -237,19 +237,19 @@ export default function MemoriesScreen({ onBack }) {
 
               <div style={{ width: '100%', height: '420px', borderRadius: '4px', overflow: 'hidden', marginBottom: '1rem' }}>
                 {selectedMedia.isVideo ? (
-                  <video 
-                    src={selectedMedia.videoSrc} 
-                    controls 
-                    autoPlay 
-                    loop 
-                    playsInline 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                  <video
+                    src={selectedMedia.videoSrc}
+                    controls
+                    autoPlay
+                    loop
+                    playsInline
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 ) : (
-                  <img 
-                    src={selectedMedia.src} 
-                    alt="Enlarged photo" 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                  <img
+                    src={selectedMedia.src}
+                    alt="Enlarged photo"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 )}
               </div>
