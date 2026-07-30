@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Image, Mail, Lock, Flower2 } from 'lucide-react';
+import { Image, Mail, Lock, CalendarHeart } from 'lucide-react';
 
 export default function MainHub({ onSelectCategory, isUnlocked }) {
   const cards = [
@@ -19,6 +19,15 @@ export default function MainHub({ onSelectCategory, isUnlocked }) {
       color: '#C83E4D',
       bg: '#FFF8F0',
       badge: 'Message'
+    },
+    {
+      id: 'special-date',
+      title: 'Our Memorable Day',
+      subtitle: '2024-12-29',
+      icon: CalendarHeart,
+      color: '#D94555',
+      bg: '#FFF0F2',
+      badge: 'Special Memory'
     },
     {
       id: 'lock',

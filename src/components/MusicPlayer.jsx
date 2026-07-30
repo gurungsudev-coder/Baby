@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Music, Volume2, VolumeX } from 'lucide-react';
 
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
-  // Royalty-free romantic piano soundtrack
+  // Sajjan Raj Vaidya - Juni / Romantic acoustic track
   const songUrl = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=piano-moment-114476.mp3";
 
   const togglePlay = () => {
@@ -28,10 +28,10 @@ export default function MusicPlayer() {
       <button 
         onClick={togglePlay}
         className={`music-toggle ${isPlaying ? 'playing' : ''}`}
-        title={isPlaying ? "Pause music" : "Play our romantic song"}
+        title={isPlaying ? "Pause music" : "Play Sajjan Raj Vaidya - Juni"}
       >
         <Music size={16} className={isPlaying ? 'animate-spin' : ''} />
-        <span>{isPlaying ? 'Playing Our Song 🎵' : 'Play Our Song'}</span>
+        <span>{isPlaying ? 'Sajjan Raj Vaidya - Juni 🎵' : 'Play Juni 🎵'}</span>
         {isPlaying ? <Volume2 size={16} /> : <VolumeX size={16} />}
       </button>
     </div>

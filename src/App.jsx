@@ -4,7 +4,7 @@ import { Home } from 'lucide-react';
 import MusicPlayer from './components/MusicPlayer';
 import LandingScreen from './components/LandingScreen';
 import MainHub from './components/MainHub';
-import BouquetScreen from './components/BouquetScreen';
+import SpecialDateScreen from './components/SpecialDateScreen';
 import MemoriesScreen from './components/MemoriesScreen';
 import LoveLetterScreen from './components/LoveLetterScreen';
 import DateUnlockScreen from './components/DateUnlockScreen';
@@ -61,8 +61,8 @@ export default function App() {
           />
         )}
 
-        {currentView === 'bouquet' && (
-          <BouquetScreen key="bouquet" onBack={() => setCurrentView('hub')} />
+        {currentView === 'special-date' && (
+          <SpecialDateScreen key="special-date" onBack={() => setCurrentView('hub')} />
         )}
 
         {currentView === 'memories' && (
