@@ -20,7 +20,7 @@ export default function MemoriesScreen({ onBack }) {
     { src: '/photos/IMG_7724.jpg', caption: 'Unforgettable days 🌸', rotation: -1 },
     { src: '/photos/fqs 2026-07-15 210422B7097164B0C7.jpg', caption: 'Holding onto memories', rotation: 2 },
     { 
-      videoSrc: '/videos/IMG_8046.mov', 
+      videoSrc: '/videos/IMG_8046.mp4', 
       caption: 'Forever & Always 🎥', 
       rotation: -2, 
       isVideo: true 
