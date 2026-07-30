@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+  --font-romantic: 'Dancing Script', cursive;
+  --font-serif: 'Playfair Display', serif;
+
+  --bg-paper: #F6F3EB;
+  --card-bg: #FFFFFF;
+  --card-border: #E8E2D5;
+  --primary-red: #D94555;
+  --primary-red-hover: #C53545;
+  --soft-rose: #FBF0F2;
+  --accent-gold: #D4AF37;
+  --text-dark: #3E3232;
+  --text-muted: #7A6C6C;
+  --shadow-paper: 0 10px 30px rgba(62, 50, 50, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 8px 24px rgba(217, 69, 85, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-paper);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(#D94555 0.5px, transparent 0.5px),
+    radial-gradient(#3E3232 0.5px, #F6F3EB 0.5px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  background-opacity: 0.03;
+}
+
+/* Paper Grain Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(246,243,235,0.4) 100%);
+  z-index: -1;
+}
+
+/* Container */
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+/* Music Control Button */
+.music-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  background: #D94555;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1.2rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(217, 69, 85, 0.3);
+  transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: #C53545;
+  box-shadow: 0 6px 20px rgba(217, 69, 85, 0.4);
+}
+
+.music-toggle.playing {
+  animation: pulse-light 2s infinite ease-in-out;
+}
+
+@keyframes pulse-light {
+  0%, 100% { box-shadow: 0 4px 15px rgba(217, 69, 85, 0.3); }
+  50% { box-shadow: 0 4px 25px rgba(217, 69, 85, 0.6); }
+}
+
+/* Home Button */
+.nav-home-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  background: white;
+  color: var(--primary-red);
+  border: 2px solid var(--card-border);
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.nav-home-btn:hover {
+  transform: translateX(-50%) scale(1.1);
+  background: var(--soft-rose);
+  border-color: var(--primary-red);
+}
+
+/* Card Common Styling */
+.paper-card {
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #D94555, #E57373, #D94555);
+}
+
+/* Typography Helpers */
+.title-handwriting {
+  font-family: var(--font-handwriting);
+  color: var(--text-dark);
+}
+
+.title-romantic {
+  font-family: var(--font-romantic);
+  color: var(--primary-red);
+}
+
+.title-serif {
+  font-family: var(--font-serif);
+}
+
+/* Floating animation for bouquet badges */
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.floating-badge {
+  animation: floatBadge 4s ease-in-out infinite;
+}
+
+.floating-badge:nth-child(2n) {
+  animation-delay: 1s;
+}
+
+.floating-badge:nth-child(3n) {
+  animation-delay: 2s;
+}
+
+/* Polaroid Card Effect */
+.polaroid-frame {
+  background: white;
+  padding: 12px 12px 40px 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.polaroid-frame:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 24px;
+  background: rgba(235, 230, 215, 0.7);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  backdrop-filter: blur(1px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: #D9455566;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D94555;
+}
